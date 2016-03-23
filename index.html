@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <title>Code Test</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="vendor/angular.min.js"></script>
+</head>
+<body>
+    <header>
+        <h2>Calling Open Source API (github)</h2>
+        <h3>Enter any username in textbox and click search to search github for entered username</h3>
+    </header>
+    
+    
+   <div ng-controller="searchCtrl" class="middleContent"  class="row">
+       <section id="sectn" class="col-md-4">
+            <div ng-include="searchTemplate"></div>
+
+            <div ng-show="userNotFound">
+                  <h2>No User Info Found</h2>
+               </div>
+
+
+            <div ng-show="loaded">
+                      <h2> <strong id = "basic">Basic User Info</strong></h2>
+                      <h2> {{user.name}}
+                         <span class="smallname">(@<a href="{{user.html_url}}" target="_blank"> {{user.login}} </a>)</span>
+                      </h2>
+
+                      <div class="ghcontent">
+                         <div class="avi">
+                            <a href="{{ user.html_url }}" target="_blank">
+                            <img src="{{ user.avatar_url }}"  alt="{{ user.login }}"></a>
+                         </div>
+                         Followers: {{ user.followers }} - Following: {{ user.following }}
+                          <br>Repos: {{ user.public_repos }}</p>
+                     </div>
+
+                     <div class="repolist">
+                         <p ng-hide="reposFound">No repos!</p>
+                         <div ng-show="reposFound">
+                            <p><strong>Repos List:</strong></p>
+                            <ul ng-repeat="repo in repos">
+                               <li><a href="{{repo.html_url}}" target="_blank"> {{repo.name}} </a></li>
+                            </ul>
+                         </div>
+                     </div>
+            </div>
+       </section>
+    
+       <aside id="sidebar" class="col-md-8">
+           <div ng-show="isSortedData">
+               <h2> <strong id = "basic" class="rightCol">Returned JSON Alphabetically Sorted by Key</strong></h2>
+               <table>
+                   <tr ng-repeat="data in sortedData">
+                       <td>{{data.key}}</td>
+                       <td>{{data.name}}</td>
+                   </tr>
+               </table>
+            </div>
+        </aside>
+    </div>
+    
+    <div class="cl"></div>
+    
+    <footer>
+  		<p>Developed by Jyotsna</p>
+  		<p>03/2016 | For Northwestern Mutual Code Test</p>
+  	</footer>
+    <script src="app/main.js"></script>
+    <script src="app/common/common.js"></script>
+    <script src="app/common/APP_CONSTANTS.js"></script>
+    <script src="app/search/search.js"></script>
+    <script src="app/search/searchCtrl.js"></script>
+    <script src="app/service/userService.js"></script>
+</body>
+</html>
