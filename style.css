@@ -19,8 +19,6 @@ body {
   color: #616161;
   }
 
-br { display: block; line-height: 1.6em; } 
-
 footer, header { display: block; }
 ul { list-style: none; }
 
@@ -36,7 +34,7 @@ h2 {
   font-size: 2.8em;
   line-height: 1.55em;
   margin-bottom: 4px;
-  color:white;
+  color:black;
   text-align: center;
 }
 h3 {
@@ -59,36 +57,30 @@ a {
 a:hover {
   color: #6e91b9;
 }
-
+.row{margin:0 !important;}
 header {
     width:100%;
     padding:2%;
-    border: 1px solid black; 
-    background-color: cornflowerblue;
-}
+   }
 footer{
         width:100%;
-        padding:1%;
-        border: 1px solid black ;
-        background-color: cornflowerblue;}
+    padding:1%;
+}
 #sectn {
         float: left;
         padding:3%;
-        /*width:30%;*/
-        background-color: #eee;
-        border: 1px solid black;
+        background: linear-gradient(to left, #AAFFA9 , #11FFBD);
 }
 aside {
         float: right;
         padding:1%;
-        /*width:70%;*/
-        background-color: #eee;
-        border: 1px solid black; }
-footer > p { text-align: center; color:white ;}
+        background: linear-gradient(to left, #EFEFBB , #D4D3DD); /* Chrome 10-25, Safari 5.1-6 */
+}
+footer > p { text-align: center; color:black;}
 aside, section {height:425px; overflow:auto;}
 section > div > h2 {color: black;}
 table, td { border: 1px solid black; }
-table { margin: 0 auto; }
+.repoShow { margin: 0; }
 .rightCol{margin-top: 0;}
 
 /* page content styles */
@@ -97,7 +89,7 @@ table { margin: 0 auto; }
   color: #a9a9a9;
   font-style: italic;
 }
-
+#usrnm{color: darkolivegreen; text-align: left;}
 .avi {
   float: left;
   margin-right: 7px;
@@ -199,7 +191,7 @@ table { margin: 0 auto; }
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
 }
 .cl {clear:both;}
-#basic{color:cadetblue; border-bottom: 5px solid cadetblue; font-size:22px;}
+#basic{color:darkslateblue; border-bottom: 5px solid darkslateblue; font-size:22px;}
 @media all and (max-width : 768px) {
         header {
             text-align: center;
@@ -213,4 +205,22 @@ table { margin: 0 auto; }
             padding:3%;
             
         }
+    .btn{margin-top: 5%;}
+    #toclr{clear:both;}
+}
+/*sorted column*/
+.sortedContainer{
+    margin: 4px 0;
+    border: 1px solid #fff;
+    min-height: 27px;
+    padding: 7px;
+    border-radius: 3px;
+    box-shadow: 1px 4px 5px #888888;
+}
+.leftSpan{
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+.form-control{
+    width: 53% !important;
 }

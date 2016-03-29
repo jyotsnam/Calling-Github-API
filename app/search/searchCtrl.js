@@ -1,12 +1,20 @@
-var searchctrlFn = function ($scope, CONSTANTS, $http ) {
+var searchctrlFn = function ($scope, CONSTANTS, uService ) {
     function init() {
         $scope.searchTemplate = CONSTANTS.SEARCH_TEMPLATE;
+        var thisDate = new Date();
+        var thisYear = thisDate.getFullYear(),
+            thisMonth = thisDate.getMonth()+1;
+        if(thisMonth < 10) {
+            thisMonth = "0" + thisMonth;
+        }
+        $scope.regYear = thisMonth + "/" + thisYear;
     }
      
     $scope.findUser = function(username) 
     {
-          $http.get("https://api.github.com/users/" + username)
-              .success(function (data) {
+        var uname = username;
+          
+        uService.uData(uname).success(function (data) {
                   if (data.name == "") data.name = data.login;
                   $scope.user = data;
                   $scope.loaded = true;
@@ -20,12 +28,13 @@ var searchctrlFn = function ($scope, CONSTANTS, $http ) {
                       });
                   $scope.sortedData = arr2;
                   $scope.isSortedData = true;
+				$scope.userNotFound = false;
                })
                .error(function () {
                   $scope.userNotFound = true;
                });
         
-         $http.get("https://api.github.com/users/" + username + "/repos").success(function (data) {
+        uService.repos(uname).success(function (data) {
             $scope.repos = data;
             $scope.reposFound = data.length > 0;
          });
@@ -35,4 +44,4 @@ var searchctrlFn = function ($scope, CONSTANTS, $http ) {
     init();
 };
 
-search.controller('searchCtrl', ['$scope','APP_CONSTANTS', '$http' , searchctrlFn]);
+search.controller('searchCtrl', ['$scope','APP_CONSTANTS', 'uService' , searchctrlFn]);
